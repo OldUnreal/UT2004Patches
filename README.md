@@ -101,7 +101,7 @@ You can use our [issue tracker](https://github.com/OldUnreal/UT2004Patches/issue
 
 ## Credits
 
-The primary developers for OldUnreal's Unreal Tournament 2004 patches are (in no particular order): [AnthraX](https://github.com/stijn-volckaert), [Higor](https://github.com/CacoFFF), [Buggie](https://github.com/SeriousBuggie), [Dots](https://github.com/Marco888), [Smirftsch](https://github.com/Smirftsch), [Metallicafan212](https://github.com/Metallicafan212), [Deaod](https://github.com/Deaod), and [Piglet](https://github.com/ukpiglet]..
+The primary developers for OldUnreal's Unreal Tournament 2004 patches are (in no particular order): [AnthraX](https://github.com/stijn-volckaert), [Higor](https://github.com/CacoFFF), [Buggie](https://github.com/SeriousBuggie), [Dots](https://github.com/Marco888), [Smirftsch](https://github.com/Smirftsch), [Metallicafan212](https://github.com/Metallicafan212), [Deaod](https://github.com/Deaod), and [Piglet](https://github.com/ukpiglet).
 
 We also want to express our sincerest gratitude to the following people:
 * Stacey Conley (aka "Flak"): this project would not have happened without her. Thank you Stacey, you are amazing!
