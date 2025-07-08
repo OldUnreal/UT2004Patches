@@ -8,17 +8,18 @@ Patch releases hosted here are considered stable enough for widespread use, but 
 
 **Legal Disclaimer:** This project was approved by Epic Games, but it is not an official Epic project, nor has it been reviewed or tested by Epic.
 
-## Installation
+## Downloads
 
-This repository contains release previews as well as official releases.
+This repository provides downloads for release previews and stable releases on the [Releases Page](https://github.com/OldUnreal/UT2004Patches/releases).
+If you are an active tester who wants to test bleeding-edge changes and who can write top-quality bug reports, then please come talk to us on [Discord](https://discord.com/channels/143986633992175616/1053202987545264128) to join our internal testers team.
 
 ### Release Previews
 
-If you are a modder or beta tester and you would like to test our latest changes, then simply use git to check out this repository. Note, however, that release previews may be less stable than the official releases.
+Our release previews primarily target modders and beta testers who want to test our latest changes after they have passed the internal testing stage. These previews are considered relatively stable, but they may not work in online play.
 
-### Official Releases
+### Stable Releases
 
-Our official patch releases can be found on the [Releases Page](https://github.com/OldUnreal/UT2004Patches/releases). If you are a regular player or if you want to play online, then please use official releases only.
+If you are a regular player or if you want to play online, then please use stable releases only.
 
 > [!IMPORTANT]
 > If you want to test out our patches, but maintain the possibility to uninstall them, we strongly urge you to create a backup of your entire UT2004 folder before installing the patch.
@@ -60,6 +61,17 @@ The macOS version of our patch comes as an application bundle. You should drag t
 
 After installing the data files, you should be able to launch the UnrealTournament2004 app!
 
+## Updating Existing Server Installations
+
+> [!CAUTION]
+> If you are currently using any mutator or server actor to report to multiple master servers, remove them. They are unlikely to work any longer due to changes in class `MasterServerUplink`, and should not be necessary.
+> You should, however, make the following changes to your server configuration file (e.g., UT2004.ini):
+> 1. In [Engine.GameEngine] section, you should replace `ServerActors=IpDrv.MasterServerUplink` with `ServerActors=IpDrv.MasterServerLauncher`
+> 2. in [IpDrv.MasterServerLink] section, you **must** have at least one entry in the MasterServerList, whether or not you want to be actively listed ([IpDrv.MasterServerUplink]->DoUplink=True/False). Populate the list with each master server you may wish to report to. Examples:
+> - `MasterServerList=(Address="utmaster.openspy.net",Port=28902)`
+> -	`MasterServerList=(Address="ut2004master.333networks.com",Port=28902)`
+> - `MasterServerList=(Address="ut2004master.errorist.eu",Port=28902)`
+
 ## System Requirements
 
 Windows and Linux systems need a 64-bit Intel CPU or 64-bit ARM CPU.
@@ -73,6 +85,7 @@ macOS systems need a 64-bit Intel or Apple Silicon CPU and Mac OS X Mavericks (1
 ## Features
 
 Besides fixing hundreds of bugs, the OldUnreal UT2004 patches currently also add features such as:
+* Full 64-bit support
 * SDL3-based window management for the Linux and macOS clients
 * UTF-8 support for game ini, int, and log files
 * An updated in-game server browser with lots of quality-of-life improvements
@@ -105,5 +118,6 @@ The primary developers for OldUnreal's Unreal Tournament 2004 patches are (in no
 
 We also want to express our sincerest gratitude to the following people:
 * Stacey Conley (aka "Flak"): this project would not have happened without her. Thank you Stacey, you are amazing!
-* Wormbo and Shambler: for the multitude of fixes they implemented between versions 3369 and 3374.
-* Ryan C. Gordon (aka "icculus"): for invaluable advice, bug fixes and improvements, and work on the updated SDLDrv. If you like Ryan's work, then please consider [supporting him](https://www.patreon.com/icculus).
+* Wormbo and Shambler: for the multitude of fixes they implemented between versions 3369 and 3374
+* Ryan C. Gordon (aka "icculus"): for invaluable advice, bug fixes and improvements, and work on the updated SDLDrv. If you like Ryan's work, then please consider [supporting him](https://www.patreon.com/icculus)
+* Rejecht: for the many bug reports on unrealarchive.org
