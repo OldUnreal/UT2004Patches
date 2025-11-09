@@ -34,6 +34,7 @@ Version 3374 is completely network compatible with the previous public release o
 
 * We fixed a bug that crashed Unreal Editor when converting meshes to brushes
 * We fixed a bug that crashed Unreal Editor when you opened a map while the 3D viewport was in realtime mode
+* We fixed a bug that could crash Unreal Editor when selecting something in a 3D viewport that uses D3D9Drv
 
 #### Networking and Netcode
 
@@ -66,15 +67,30 @@ Version 3374 is completely network compatible with the previous public release o
 * The editor no longer moves left and down when clicking on a viewport, when used on a multi-monitor setup
 * Viewport selection no longer takes a century, instead acting instantly
 * We fixed bugs that made Unreal Editor incorrectly import and export DDS files
+* We fixed a bug that made the Unreal Editor tooltips disappear on some systems
+* We fixed a bug that made materials used by static meshes not appear in the texture browser's "in use" tab
+* The static mesh to brush converter now works as expected when converting a mesh with a negative draw scale
+* We fixed a bug that made Unreal Editor freeze when closing a modal dialog using the X button
+* We fixed a bug that crashed the editor when opening a non-existing file
+* We fixed a bug that made coronas block mouse selection in editor viewports
 
 #### Networking and Netcode
 
 * The game now reports the correct progress percentage when downloading files from a game server
+* The game client will no longer call PostNetBeginPlay twice for certain actors
 
 #### Audio and 3D Rendering
 
 * We fixed a bug that made ambient sounds restart whenever the player camera switches to a different view target
 * Music fadeouts should now work as expected
+
+#### Physics
+
+* We fixed a bug that triggered a "moved without proper hashing" warning when a player disconnected while possessing a live pawn
+
+#### Webadmin
+
+* We fixed a bug that made the webadmin fail intermittently on some platforms
 
 #### UnrealScript
 
@@ -85,6 +101,11 @@ Version 3374 is completely network compatible with the previous public release o
 * The DeathMatch.InitTeamSymbols function can no longer give multiple teams the same symbol ([#16](../../issues/16))
 * We fixed a bug where gibbed players or monsters can be gibbed multiple times by sources of constant damage
 * We fixed several bugs that made Engine.Canvas incorrectly process newline characters and color codes
+* We fixed a bug that made the Linux and macOS clients crash when loading font textures with remapped fonts
+* We fixed a bug that could make the game crash after calling LinkMesh on a new skeletal mesh that uses dynamic hitboxes
+* We fixed a bug that could make the game crash when you called TerrainInfo.PokeTerrain
+* Mortar shells should now work correctly on low-grav maps
+* We fixed a bug that could unexpectedly prevent you from exiting raptor vehicles
 
 #### Miscellaneous
 
@@ -101,6 +122,14 @@ Version 3374 is completely network compatible with the previous public release o
 * You can now import ASE and OBJ models as static meshes
 * We overhauled the texture compression code and switched to a new texture compression support library (AMD Compressonator). The new code works on all platforms so you can now import compressed textures using UCC make
 * You can now launch UCC from different folders on Linux and macOS
+* The mesh browser now has a package combo box and a button to open the mesh properties window
+* The new class and texture dialogs now use "MyLevel" as the default package
+* Unreal Editor now embeds the full name of exported textures in the names of the exported files
+* The sound and material browsers now have a menu option allowing you to export all in-use sounds/materials
+* The map export dialog now uses the correct map name as the default name of the exported file
+* You can now use the CTRL+Space hotkey to align the camera to the selected actor
+* Viewports now refresh when you jump to an actor using the search actor dialog
+* The editor can now import and export convex volumes
 
 #### Networking and Netcode
 
@@ -117,11 +146,14 @@ Version 3374 is completely network compatible with the previous public release o
 * The player model now renders in mirror reflections
 * Vertex models now render in OverlayMaterial
 * You can now crossfade between two music tracks using MusicEvents
+* Text-to-speech is now available in the 64-bit Windows client
+* OpenGLDrv now supports gamma correction even when the game runs in windowed mode
 
 #### Input and Windowing
 
 * The log and terminal windows can now be minimized and maximized
 * The Unreal Editor log window position now persists through restarts
+* You can now set the WinDrv.WindowsClient.DirectEnhancedPointerPrecision option to true to enable enhanced pointer precision when using DirectInput-based mouse input
 
 #### UnrealScript
 
@@ -134,6 +166,15 @@ Version 3374 is completely network compatible with the previous public release o
 * We improved several of the error messages the game logs when encountering errors in UnrealScript code
 * You can now set the MaxWarnPerFunc option in the [Core.System] section of the ini file to limit how many errors individual UnrealScript functions can log before the game silences them
 * You can now add asset files (ogg/ka) to the package map using the Actor.AddToPackageMap function
+* Several HUD and menu elements are now widescreen-aware and will scale correctly at 21:9, 16:9, and 16:10 resolutions
+* The in-game console's command history now persists across game launches
+* You can now configure the inactivity time and the effect spawned by weapon lockers
+* Engine.Actor.GetHumanReadableName() now returns the plain class name rather than the instance name (which sometimes contains a number)
+* Several Engine.PlayerController functions can now be called from static contexts
+
+#### Webadmin
+
+* The webadmin map list page now shows a sequence number for the maps in the map cycle
 
 #### Miscellaneous
 
@@ -141,3 +182,4 @@ Version 3374 is completely network compatible with the previous public release o
 * We added a KarmaPath setting to the [Core.System] section of the ini file
 * The game now reads and writes human-readable text color codes from and to the ini file
 * The Linux binaries now perform a case-insensitive file search when they cannot open required localization files
+* The game will now save screenshots in PNG format

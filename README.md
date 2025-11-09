@@ -88,6 +88,9 @@ Besides fixing hundreds of bugs, the OldUnreal UT2004 patches currently also add
 * Full 64-bit support
 * SDL3-based window management for the Linux and macOS clients
 * UTF-8 support for game ini, int, and log files
+* Raw mouse input
+* PNG screenshots
+* Widescreen fixes
 * An updated in-game server browser with lots of quality-of-life improvements
 
 We will update this list as we add more features.
