@@ -104,7 +104,7 @@ A full list of patch features and changes is available in the [Release Notes](ht
 ## Donations
 
 > [!NOTE]
-> We are all volunteers who work on Unreal, Unreal Tournament, and Unreal Tournament 2004 in our spare time. If you like our work, then please consider making a small donation [here](https://www.oldunreal.com/phpBB3/donate). Please make sure to mention Unreal Tournament in your donation note!
+> We are all volunteers who work on Unreal, Unreal Tournament, and Unreal Tournament 2004 in our spare time. If you like our work, then please consider making a small donation [here](https://www.oldunreal.com/phpBB3/donate). Please make sure to mention Unreal Tournament 2004 in your donation note!
 
 ## Bug Reports
 
