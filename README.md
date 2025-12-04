@@ -80,7 +80,7 @@ Windows systems need to run Windows 7 or later.
 
 Linux systems need to run a fairly recent distribution. The patch was developed on Ubuntu 24.04.
 
-macOS systems need a 64-bit Intel or Apple Silicon CPU and Mac OS X Mavericks (10.9) or later. Some rendering features may be unavailable on macOS.
+macOS systems need a 64-bit Intel or Apple Silicon CPU and macOS Catalina (10.15) or later. Some rendering features may be unavailable on macOS.
 
 ## Features
 
