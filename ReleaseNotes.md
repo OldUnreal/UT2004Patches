@@ -39,6 +39,7 @@ Version 3374 is completely network compatible with the previous public release o
 #### Networking and Netcode
 
 * We fixed a networking bug that allowed players to perform illegal combo moves and to crash servers
+* Clients no longer hang in connecting screen when server has too many server packages.
 
 #### Audio and 3D Rendering
 
@@ -72,7 +73,6 @@ Version 3374 is completely network compatible with the previous public release o
 * The static mesh to brush converter now works as expected when converting a mesh with a negative draw scale
 * We fixed a bug that made Unreal Editor freeze when closing a modal dialog using the X button
 * We fixed a bug that crashed the editor when opening a non-existing file
-* We fixed a bug that made coronas block mouse selection in editor viewports
 
 #### Networking and Netcode
 
@@ -129,6 +129,7 @@ Version 3374 is completely network compatible with the previous public release o
 * You can now use the CTRL+Space hotkey to align the camera to the selected actor
 * Viewports now refresh when you jump to an actor using the search actor dialog
 * The editor can now import and export convex volumes
+* We added support for importing UnrealEngine 1 T3D files.
 
 #### Networking and Netcode
 
@@ -145,6 +146,7 @@ Version 3374 is completely network compatible with the previous public release o
 * The player model now renders in mirror reflections
 * Vertex models now render in OverlayMaterial
 * You can now crossfade between two music tracks using MusicEvents
+* Music OGG files support loop points (or even looping disabled)
 * Text-to-speech is now available in the 64-bit Windows client
 * OpenGLDrv now supports gamma correction even when the game runs in windowed mode
 
