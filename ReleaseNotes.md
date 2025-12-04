@@ -11,7 +11,7 @@
 ### Independent Unreal Tournament Web Sites and Discord servers
 
 * [OldUnreal site](https://www.oldunreal.com) / [OldUnreal Discord](https://discord.com/channels/143986633992175616/1053202987545264128)
-* [MiA Forums](https://www.miasma/rocks)  / [MiA Discord](https://discord.gg/CxdXaEauya)
+* [MiA Forums](https://www.miasma.rocks)  / [MiA Discord](https://discord.gg/CxdXaEauya)
 * [CEONS Forums](https://ceonss.net/) / [CEONS Discord](https://discord.com/channels/310878149158240257/310878149158240257)
 
 ## Unreal Tournament 2004 Version 3374 Release Notes
