@@ -18,6 +18,9 @@
 
 Version 3374 is completely network compatible with the previous public release of UT2004 (3369). 
 
+> [!IMPORTANT]
+> This patch should be installed after installing the Epic ECE Bonus Pack and Patch 3369 (only if the game version is lower from 3369), as it updates some of the game code included with the bonus pack and patch 3369.
+
 ### Patch Highlights
 
 * We now natively support Linux and macOS systems with x86_64/amd64 and arm64/aarch64 CPUs 
