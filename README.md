@@ -25,7 +25,8 @@ If you are a regular player or if you want to play online, then please use stabl
 > If you want to test out our patches, but maintain the possibility to uninstall them, we strongly urge you to create a backup of your entire UT2004 folder before installing the patch.
 
 > [!IMPORTANT]
-> This patch should be installed after installing the Epic ECE Bonus Pack and Patch 3369 (only if the game version is lower from 3369), as it updates some of the game code included with the bonus pack and patch 3369.
+> If you are installing our patch manually, you should update your game client to version 3369 and install the Epic ECE Bonus Pack first.
+> If you use our installers, the necessary files will be installed automatically.
 
 ## Windows Installation
 
