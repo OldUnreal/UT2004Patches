@@ -75,6 +75,7 @@ After installing the data files, you should be able to launch the UT2004 app!
 > - `MasterServerList=(Address="utmaster.openspy.net",Port=28902)`
 > -	`MasterServerList=(Address="ut2004master.333networks.com",Port=28902)`
 > - `MasterServerList=(Address="ut2004master.errorist.eu",Port=28902)`
+> - `MasterServerList=(Address="master.frag-net.com",Port=28902)`
 
 ## System Requirements
 
