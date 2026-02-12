@@ -58,9 +58,9 @@ Update System/UT2004.ini
 
 ```
 MasterServerList=(Address="utmaster.openspy.net",Port=28902,Group=0)
+MasterServerList=(Address="ut2004master.333networks.com",Port=28902,Group=1)
 MasterServerList=(Address="ut2004master.errorist.eu",Port=28902,Group=1)
 MasterServerList=(Address="ut2004master.gonespy.com",Port=28902,Group=1)
-MasterServerList=(Address="ut2004master.333networks.com",Port=28902,Group=1)
 MasterServerList=(Address="master.frag-net.com",Port=28902,Group=1)
 ```
 
@@ -74,6 +74,7 @@ MasterServerList=(Address="master.frag-net.com",Port=28902,Group=1)
 > - `MasterServerList=(Address="utmaster.openspy.net",Port=28902)`
 > -	`MasterServerList=(Address="ut2004master.333networks.com",Port=28902)`
 > - `MasterServerList=(Address="ut2004master.errorist.eu",Port=28902)`
+> -	`MasterServerList=(Address="ut2004master.gonespy.com",Port=28902)`
 > - `MasterServerList=(Address="master.frag-net.com",Port=28902)`
 
 ## Game Downloads
