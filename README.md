@@ -51,6 +51,8 @@ The macOS version of our patch comes as an application bundle. You should drag t
 
 ### Updating Existing Client Installations
 
+Before applying the patch we recommend that you take a copy of your existing System directory which you can revert back to if you wish.
+
 Update System/UT2004.ini 
 
 1. To point to the new main menu, which adjusts better to wide-screen layout, in section `[Engine.GameEngine]` update from `MainMenuClass=GUI2K4.UT2K4MainMenu` to `MainMenuClass=GUI2K4.UT2K4MainMenuWS`.
