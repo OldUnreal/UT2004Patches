@@ -14,7 +14,7 @@
 * [MiA Forums](https://www.miasma.rocks)  / [MiA Discord](https://discord.gg/CxdXaEauya)
 * [CEONS Forums](https://ceonss.net/) / [CEONS Discord](https://discord.com/channels/310878149158240257/310878149158240257)
 
-## Unreal Tournament 2004 Version 3374 Release Notes (Release Preview Coming Soon!)
+## Unreal Tournament 2004 Version 3374 Release Notes
 
 Version 3374 is completely network compatible with the previous public release of UT2004 (3369). 
 
@@ -31,7 +31,7 @@ Version 3374 is completely network compatible with the previous public release o
 * The Windows version of the game now requires DirectX 9
 * The Linux and macOS versions now use SDL3 instead of SDL1
 * We dealt a first (minor) blow to the editor goblin! Unreal Editor will no longer freeze for several seconds when clicking a viewport
-* Our patch includes a brand new OpenGL 3.3 / ES 3.0 renderer, AntiDrv. This renderer outperforms the original OpenGLDrv on most platforms, adds new features (e.g., shader-based gamma/color correction), implements/fixes several features that were missing/broken in the original OpenGLDrv (e.g., gradient projectors and weightmap terrain rendering), makes features that were previously nvidia/amd-exclusive available on all platforms (e.g., CO_AlphaBlend_With_Mask combiners), and it can serve as a reference implementation for other new renderers. AntiDrv will be available in Preview 6
+* Our patch includes a brand new OpenGL 3.3 / ES 3.0 renderer, AntiDrv. This renderer outperforms the original OpenGLDrv on most platforms, adds new features (e.g., shader-based gamma/color correction), implements/fixes several features that were missing/broken in the original OpenGLDrv (e.g., gradient projectors and weightmap terrain rendering), makes features that were previously nvidia/amd-exclusive available on all platforms (e.g., CO_AlphaBlend_With_Mask combiners), and it can serve as a reference implementation for other new renderers
 
 ### Stability Improvements
 
@@ -44,6 +44,7 @@ Version 3374 is completely network compatible with the previous public release o
 * The terrain editor no longer crashes when the TerrainMap is null ([#120](https://github.com/OldUnreal/UT2004Patches/issues/120))
 * The terrain editor no longer crashes when the terrain has a scale of 0 ([#139](https://github.com/OldUnreal/UT2004Patches/issues/139))
 * We fixed a bug that made the editor crash when deleting a shader texture and selecting another shader afterwards
+* Unreal editor no longer crashes when undocking the static mesh browser
 
 #### Networking and Netcode
 
