@@ -115,7 +115,7 @@ To install the game assets manually on a macOS system, you can either:
 1. Open a new Finder window
 2. Press ⇧⌘G to bring up the "Go to folder:" dialog
 3. Enter "~/Library/Application Support/" (without the quotes!) in the edit box and click ok
-4. Within the ~/Library/Application Support/ folder, create a new folder called "Unreal Tournament 2004" (without the quotes!)
+4. Within the ~/Library/Application Support/ folder, create a new folder called "UT2004" (without the quotes!)
 5. Copy the **Animations**, **Help**, **KarmaData**, **maps**, **Music**, **Prefabs**, **Sounds**, **Speech**, **StaticMeshes**, **Textures**, and **Web** from your existing UT2004 installation into the folder you've just created
 6. Install our game patch
 
