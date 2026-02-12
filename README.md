@@ -53,7 +53,7 @@ The macOS version of our patch comes as an application bundle. You should drag t
 
 Update System/UT2004.ini 
 
-1. To point to the new main menu, which adjusts better to wide-screen layout. In section `[Engine.GameEngine]` update from `MainMenuClass=GUI2K4.UT2K4MainMenu` to `MainMenuClass=GUI2K4.UT2K4MainMenuWS`.
+1. To point to the new main menu, which adjusts better to wide-screen layout, in section `[Engine.GameEngine]` update from `MainMenuClass=GUI2K4.UT2K4MainMenu` to `MainMenuClass=GUI2K4.UT2K4MainMenuWS`.
 2. Configure for the available master servers: In section `[IpDrv.MasterServerLink]` configure with:
 
 ```
