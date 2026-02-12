@@ -49,6 +49,20 @@ The **Linux** version of our patch is only available as a tarball. To install, u
 
 The macOS version of our patch comes as an application bundle. You should drag this bundle into your applications library. No other actions are needed to install the patch.
 
+### Updating Existing Client Installations
+
+Update System/UT2004.ini 
+
+1. To point to the new main menu, which adjusts better to wide-screen layout. In section `[Engine.GameEngine]` update from `MainMenuClass=GUI2K4.UT2K4MainMenuWS` to `MainMenuClass=GUI2K4.UT2K4MainMenuWS`.
+2. Configure for the available master servers: In section `[IpDrv.MasterServerLink]` configure with:
+
+```
+MasterServerList=(Address="utmaster.openspy.net",Port=28902,Group=0)
+MasterServerList=(Address="ut2004master.errorist.eu",Port=28902,Group=1)
+MasterServerList=(Address="ut2004master.gonespy.com",Port=28902,Group=1)
+MasterServerList=(Address="ut2004master.333networks.com",Port=28902,Group=1)
+```
+
 ### Updating Existing Server Installations
 
 > [!CAUTION]
@@ -59,6 +73,7 @@ The macOS version of our patch comes as an application bundle. You should drag t
 > - `MasterServerList=(Address="utmaster.openspy.net",Port=28902)`
 > -	`MasterServerList=(Address="ut2004master.333networks.com",Port=28902)`
 > - `MasterServerList=(Address="ut2004master.errorist.eu",Port=28902)`
+> - `MasterServerList=(Address="master.frag-net.com",Port=28902)`
 
 ## Game Downloads
 
