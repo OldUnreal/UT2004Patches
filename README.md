@@ -8,10 +8,13 @@ Patch releases hosted here are considered stable enough for widespread use, but 
 
 **Legal Disclaimer:** This project was approved by Epic Games, but it is not an official Epic project, nor has it been reviewed or tested by Epic.
 
-## Downloads
+## Patch Downloads
 
-This repository provides downloads for release previews and stable releases on the [Releases Page](https://github.com/OldUnreal/UT2004Patches/releases).
+This repository provides downloads for release previews and stable releases of the **game patch** on the [Releases Page](https://github.com/OldUnreal/UT2004Patches/releases).
 If you are an active tester who wants to test bleeding-edge changes and who can write top-quality bug reports, then please come talk to us on [Discord](https://discord.com/channels/143986633992175616/1053202987545264128) to join our internal testers team.
+
+> [!IMPORTANT]
+> If you are looking for **full game downloads**, then please scroll down to our [Game Downloads](https://github.com/OldUnreal/UT2004Patches?tab=readme-ov-file#game-downloads) section.
 
 ### Release Previews
 
@@ -28,44 +31,25 @@ If you are a regular player or if you want to play online, then please use stabl
 > If you are installing our patch manually, you should update your game client to version 3369 and install the Epic ECE Bonus Pack first.
 > If you use our installers, the necessary files will be installed automatically.
 
-## Windows Installation
+## Patch Installation
 
-We distribute our patches for **Windows** systems in multiple formats. We recommend that you run the exe installer to patch your game.
+If you have already installed the game and you wish to update it to the latest version, then please follow the instructions below.
+If you have not yet installed the game, you should scroll down to our [Game Installers](https://github.com/OldUnreal/UT2004Patches?tab=readme-ov-file#game-downloads) section and follow the instructions.
+Our installers automatically install the game and update it to the latest version.
 
-However, you can also simply unpack the zip package **on top of an existing installation** of Unreal Tournament 2004. No other actions are needed to install the patch.
+### Windows Installation
 
-## Linux Installation
+We distribute our patches for **Windows** systems as a zip file. This zip file should be extracted into an existing game installation directory. No other actions are needed to install the patch.
 
-The **Linux** version of our patch is only available as a tarball. To install, unpack the tarball **on top of an existing installation** of Unreal Tournament 2004.
+### Linux Installation
 
-Alternatively, to spare you the pain of using Wine to install the Windows version, you can unpack our patch into an empty directory, which we will refer to as the **game directory**. You can then install the rest of the game as follows:
+The **Linux** version of our patch is only available as a tarball. To install, unpack the tarball **into an existing game installation directory**. No other actions are needed to install the patch.
 
-> [!NOTE]
-> The directory names below are Case Sensitive!
+### macOS Installation
 
-1) **Mount** the UT2004 cd/image or unpack the GOG distribution with the **innoextract** tool. We will refer to the root directory of your game cd/image or GOG distribution as the **distribution directory**.
-2) Copy the **Animations**, **Help**, **KarmaData**, **maps**, **Music**, **Prefabs**, **Sounds**, **Speech**, **StaticMeshes**, **Textures**, and **Web** directories from the distribution directory into the game directory.
+The macOS version of our patch comes as an application bundle. You should drag this bundle into your applications library. No other actions are needed to install the patch.
 
-> [!CAUTION]
-> Please ensure that you do **NOT** copy the contents of the System directory in your cd/GoG image into the game directory, otherwise the game will not launch!
-
-At this point you're all set. No other actions are needed to install the patch.
-
-## macOS Installation
-
-The macOS version of our patch comes as an application bundle. You should drag this bundle into your applications library. If you're installing our macOS patch for the first time, you will also need to copy the data files from an existing UT2004 installation into your Application Support Library. To install the data files, you need to do the following:
-1. Open a new Finder window
-2. Press ⇧⌘G to bring up the "Go to folder:" dialog
-3. Enter "~/Library/Application Support/" (without the quotes!) in the edit box and click ok
-4. Within the ~/Library/Application Support/ folder, create a new folder called "Unreal Tournament 2004" (without the quotes!)
-5. Copy the **Animations**, **Help**, **KarmaData**, **maps**, **Music**, **Prefabs**, **Sounds**, **Speech**, **StaticMeshes**, **Textures**, and **Web** from your existing UT2004 installation into the folder you've just created
-
-> [!CAUTION]
-> Please ensure that you do **NOT** copy the contents of the original game's System directory into ~/Library/Application Support/, otherwise the game will not launch!
-
-After installing the data files, you should be able to launch the UT2004 app!
-
-## Updating Existing Server Installations
+### Updating Existing Server Installations
 
 > [!CAUTION]
 > If you are currently using any mutator or server actor to report to multiple master servers, remove them. They are unlikely to work any longer due to changes in class `MasterServerUplink`, and should not be necessary.
@@ -75,7 +59,54 @@ After installing the data files, you should be able to launch the UT2004 app!
 > - `MasterServerList=(Address="utmaster.openspy.net",Port=28902)`
 > -	`MasterServerList=(Address="ut2004master.333networks.com",Port=28902)`
 > - `MasterServerList=(Address="ut2004master.errorist.eu",Port=28902)`
-> - `MasterServerList=(Address="master.frag-net.com",Port=28902)`
+
+## Game Downloads
+
+If you're installing the game for the first time, we recommend that you either use our [Full Game Installers](https://github.com/OldUnreal/FullGameInstallers/releases).
+Alternatively, you can follow the instructions below to install the game manually.
+
+### Windows Installation
+
+To install the game manually on a Windows system, you should:
+1. Create a new game folder
+2. Mount the game cd or dvd image
+3. Copy the **Animations**, **Help**, **KarmaData**, **maps**, **Music**, **Prefabs**, **Sounds**, **Speech**, **StaticMeshes**, **Textures**, and **Web** directories from the game cd/dvd into your game directory.
+4. Install our patch following the instructions above.
+
+### Linux Installation
+
+To install the game manually on a Linux system, you should:
+
+> [!NOTE]
+> The directory names below are Case Sensitive!
+
+1. **Mount** the game cd or dvd image, or unpack the GOG distribution with the **innoextract** tool. We will refer to the root directory of your game cd/image or GOG distribution as the **distribution directory**.
+2. Copy the **Animations**, **Help**, **KarmaData**, **maps**, **Music**, **Prefabs**, **Sounds**, **Speech**, **StaticMeshes**, **Textures**, and **Web** directories from the distribution directory into the game directory.
+
+> [!CAUTION]
+> Please ensure that you do **NOT** copy the contents of the System directory in your cd/GoG image into the game directory, otherwise the game will not launch!
+
+3. Extract our game patch into the game directory following the instructions above.
+
+### macOS Installation
+
+To install the game assets manually on a macOS system, you can either:
+
+* Option 1: copy the game assets from an existing game installation:
+1. Open a new Finder window
+2. Press ⇧⌘G to bring up the "Go to folder:" dialog
+3. Enter "~/Library/Application Support/" (without the quotes!) in the edit box and click ok
+4. Within the ~/Library/Application Support/ folder, create a new folder called "Unreal Tournament 2004" (without the quotes!)
+5. Copy the **Animations**, **Help**, **KarmaData**, **maps**, **Music**, **Prefabs**, **Sounds**, **Speech**, **StaticMeshes**, **Textures**, and **Web** from your existing UT2004 installation into the folder you've just created
+6. Install our game patch
+
+> [!CAUTION]
+> Please ensure that you do **NOT** copy the contents of the original game's System directory into ~/Library/Application Support/, otherwise the game will not launch!
+
+* Option 2: use our game assets installer to automatically download and install the assets:
+1. Download the assets installer [here](https://github.com/OldUnreal/FullGameInstallers/releases/tag/macos-installers-1).
+2. Run the game installer. You can see how to use the installer in [this video](https://www.youtube.com/watch?v=BZOTSx_c1FM&feature=youtu.be).
+3. Install our game patch
 
 ## System Requirements
 
@@ -96,6 +127,7 @@ Besides fixing hundreds of bugs, the OldUnreal UT2004 patches currently also add
 * PNG screenshots
 * Widescreen fixes
 * An updated in-game server browser with lots of quality-of-life improvements
+* New renderers!
 
 We will update this list as we add more features.
 
