@@ -43,6 +43,10 @@ We distribute our patches for **Windows** systems as a zip file. This zip file s
 
 ### Linux Installation
 
+> [!CAUTION]
+> Due to case-sensitivity issues, if you are updating your Linux server or client from game version 3369 or lower, we **strongly** urge you to delete the following files from your game's system folder and from ~/.ut2004/System/:
+> Bonuspack.u, Gui2K4.u, Gameplay.u, Ipdrv.u, Skaarjpack.u, StreamLineFX.u, UT2K4Assault.u, UT2K4AssaultFull.u, XVoting.u, xWebAdmin.u
+
 The **Linux** version of our patch is only available as a tarball. To install, unpack the tarball **into an existing game installation directory**. No other actions are needed to install the patch.
 
 ### macOS Installation
