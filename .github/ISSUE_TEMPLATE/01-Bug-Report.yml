@@ -1,0 +1,108 @@
+name: Bug report
+description: Something did not work as I expected it to.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: actions
+    attributes:
+      label: Reproduction Steps
+      description: |
+          Please describe the steps to reproduce as detailed as possible. Attach
+          relevant settings files (careful, these are public). For UnrealEd
+          bugs, please attach test maps that demonstrate the issue.
+      placeholder: (Required)
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: Please describe what you expected to happen.
+      placeholder: (Required)
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: |
+          Please describe what actaully happens. Attach screenshots of the error
+          and/or log-files from the UT2004 System folder here.
+      placeholder: (Required)
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Windows
+        - macOS
+        - Linux Native
+        - Windows on Linux (Wine/Proton/...)
+        - Steam Deck - Native
+        - Steam Deck - Proton
+    validations:
+      required: true
+  - type: dropdown
+    id: cpu-type
+    attributes:
+      label: CPU Type
+      options:
+        - Intel/AMD
+        - ARM/Apple M-Series/Raspberry Pi
+    validations:
+      required: true
+  - type: dropdown
+    id: gpu-type
+    attributes:
+      label: GPU Manufacturer
+      options:
+        - Nvidia
+        - Intel
+        - AMD
+        - Apple
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: UT2004 Version
+      description: Which version of UT2004 did the bug happen on (e.g. 3374p9)?
+    validations:
+      required: true
+  - type: input
+    id: install-path
+    attributes:
+      label: UT2004 Install Path
+      description: Where did you install UT2004 to?
+      placeholder: C:\UT2004\
+    validations:
+      required: true
+  - type: dropdown
+    id: installer
+    attributes:
+      label: UT2004 Installer
+      description: How did you install UT2004 on your computer?
+      options:
+        - OldUnreal Full Game Installer
+        - Steam
+        - GOG
+        - DVD/CDs
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: installer-other
+    attributes:
+      label: UT2004 Installer (Other)
+      description: If you selected Other, please provide a link to the UT2004 Installer you used.
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional Information
+      description: If there is anything else you want to tell us that might help identify whats wrong, please enter it here.
