@@ -62,7 +62,10 @@ Version 3374 is completely network compatible with the previous public release o
 * We added colored output to UCC (might not work on some platforms)
 * We made the output of UCC make more compact
 * Unreal Editor and UCC now log additional information when they warn about invalid materials in skeletal meshes
-* We implemented several optimizations that should speed up undo/redo operations ([#63](https://github.com/OldUnreal/UT2004-testing/issues/63))
+* We implemented several optimizations that should speed up undo/redo operations
+* We've removed some particularly spammy log messages from Unreal Editor
+* We fixed an editor bug that duplicated projected texture layers during build operations
+* We've increased the maximum framerate for editor viewports to 200 FPS. This should make camera movement in the editor much smoother
 
 #### Networking and Netcode
 
@@ -73,6 +76,14 @@ Version 3374 is completely network compatible with the previous public release o
 * Demos recorded in offline games will now work with mods that add packages to the package map using Actor.AddToPackageMap
 * You can now add favorite servers using their fully qualified domain name
 * We now automatically detect the GoG CD key and replace it with a unique key
+* We've removed the MaxClientRate cap that would be enforced when the server had more than 16 players ([#264](../../issues/264))
+* We've removed the Windows XP firewall authorization code that generated firewall warning popups
+
+#### Voice Chat
+* The 9.6Kbit/s voice codec now works in internet games ([#46](../../issues/46))
+* Auto-joining voice channels should now work reliably
+* The client should now correctly inform the server about its voice chat status
+* The game will now only turn on your microphone when you're in a multiplayer game with voice chat enabled
 
 #### Audio and 3D Rendering
 
@@ -85,6 +96,17 @@ Version 3374 is completely network compatible with the previous public release o
 * Text-to-speech is now available in the 64-bit Windows client
 * OpenGLDrv now supports gamma correction even when the game runs in windowed mode
 * We no longer delete the renderer when switching between fullscreen and windowed mode. This should make these mode switches much faster
+* When you alt+tab out of the game and back in on a Windows system running one of the OpenGL renderers in fullscreen mode, the game window should now restore the game window to fullscreen mode
+* When you alt+tab out of the game, the game window will now get minimized instead of rendering over all other windows
+* We made some minor adjustments to OpenGL/AntiDrv color correction. The new default color correction values in Default.ini are Brightness=0.5, Contrast=0.5, Gamma=1.0. We also updated OpenGLDrv and AntiDrv so they match D3D9Drv exactly at these values ([#238](../../issues/238))
+* The FPS limiter now works reliably at high frame rates ([#293](../../issues/293))
+* The video settings menu will no longer warn you about using an unsupported resolution when the game is in windowed mode
+* We've implemented Hor+ FoV support. This implementation makes foxwsfix unnecessary ([#33](../../issues/33) [#286](../../issues/286) [#185](../../issues/185) [#200](../../issues/200) [#194](../../issues/194))
+* We overhauled fullscreen handling on macOS and Linux. fullscreen viewports now render at the desktop resolution at all times, but the game will render at the resolution the player selected internally
+* We added support for stereo sound effects in ALAudio
+* D3D9Drv should now gracefully handle textures that are missing mipmap data. This fix will make the flames on ONS-Frostbite render correctly
+* ALAudio now supports EAX spatial audio on Linux
+* We added a new "Highest" world detail mode. This mode disables the dynamic detail reduction feature that disabled visual effects such as vehicle headlights when the frame rate (temporarily) dropped below the desired frame rate
 
 #### Physics and Movement
 
@@ -116,19 +138,28 @@ Version 3374 is completely network compatible with the previous public release o
 * Several Engine.PlayerController functions can now be called from static contexts
 * The game now shows you the UnrealScript call stack when it logs an accessed none error
 * The various frame rate limits can now be configured in the in-game menu
-* We made the map voter load the map list much more quickly ([#89](https://github.com/OldUnreal/UT2004Patches/issues/89))
+* We made the map voter load the map list much more quickly ([#89](../../issues/89))
 * We added an "All" game type to the server browser
 * We added new aspect ratio scaled image style (`ISTY_AspectRatioScaled`) with alignment options for widescreen support
 * We added widescreen main menu images for aspect ratios between 1.7 and ultra-widescreen
-* The "join game" menu now remembers your last selected tab ([#126](https://github.com/OldUnreal/UT2004Patches/issues/126))
+* The "join game" menu now remembers your last selected tab ([#126](../../issues/126))
 * The SkaarjPack.Invasion.ReduceDamage function now calls the super function to handle damage reduction for victims that do not belong to the same species as the damage instigators
-* The bonus pack 2 maps are now in the lists of alternative ladder maps ([#136](https://github.com/OldUnreal/UT2004Patches/issues/136))
-* The onslaught ladder should now appear in the single player menu ([#136](https://github.com/OldUnreal/UT2004Patches/issues/136))
+* The bonus pack 2 maps are now in the lists of alternative ladder maps ([#136](../../issues/136))
+* The onslaught ladder should now appear in the single player menu ([#136](../../issues/136))
 * The tutorial maps in the single player campaign now have a thumbnail
+* The "open" console command now supports https links
+* We added functionality for colored server names using HTML-like notation
+* We implemented a new mechanism mutators can use to present custom map voting menus to 3374 clients. This mechanism adds a "CustomMapVotingMenu" string variable to the XInterface.GUIController class. You can set this variable using SetPropertyText. If the SetPropertyText call succeeds, the client will open the map voting menu using this variable. If the call fails, you are dealing with an older client, and your custom menu loader will need to revert on such clients to using "MapVotingMenu" ([#335](../../issues/335))
+* We backported the UTrace, UTrack, and UProfile console commands from UT99
+* We tweaked the positioning and scaling of the main menu buttons, the Onslaught minimap, and the Onslaught grenade HUD to better accommodate ultra-widescreen monitors
 
 #### Webadmin
 
 * The webadmin map list page now shows a sequence number for the maps in the map cycle
+
+#### Localization
+
+* Added Hebrew and Russian localization and fonts
 
 #### Miscellaneous
 
@@ -140,7 +171,8 @@ Version 3374 is completely network compatible with the previous public release o
 * The game will now save screenshots in PNG format
 * We increased the default cache size
 * We optimized the code that saves your game configuration to INI files
-
+* The game now flushes the log file when it closes or crashes
+* We backported several bug fixes and optimizations for the log window
 
 ### Bug Fixes
 
@@ -164,23 +196,34 @@ Version 3374 is completely network compatible with the previous public release o
 * Skeletal mesh faces should now get sorted correctly during import
 * We fixed a bug that made the 'None' group list show all sounds from other groups
 * We fixed a bug that made surface properties update slowly when unselecting a surface
+* We fixed a bug that made it impossible to assign advanced textures to surfaces using the texture browser ([#203](../../issues/203))
+* We fixed an editor bug that made assets without a group invisible in the various assets browsers ([#237](../../issues/237))
+* We fixed a bug that made the progress bars blink during slow editor operations
+* We fixed a bug that made the editor hang when you compiled changed scripts if no scripts had changes ([#268](../../issues/268))
 
 #### Networking and Netcode
 
 * The game now reports the correct progress percentage when downloading files from a game server
 * The game client will no longer call PostNetBeginPlay twice for certain actors
-* We fixed an issue that made the server browser not update information/pings when the netspeed is above 20000 ([#72](https://github.com/OldUnreal/UT2004Patches/issues/72))
+* We fixed an issue that made the server browser not update information/pings when the netspeed is above 20000 ([#72](../../issues/72))
+* We fixed rubber-banding/movement desync when playing online with high fps ([#81](../../issues/81))
 
 #### Audio and 3D Rendering
 
 * We fixed a bug that made ambient sounds restart whenever the player camera switches to a different view target
 * Music fadeouts should now work as expected
-* We fixed an issue that made music volume changes reset the currently playing song ([#102](https://github.com/OldUnreal/UT2004Patches/issues/102))
+* We fixed an issue that made music volume changes reset the currently playing song ([#102](../../issues/102))
+* We fixed a bug that made unlit meshes flicker occasionally
+* D3D9Drv should now render materials with multiple passes correctly. This change fixes several issues where material layers were missing ([#363](../../issues/363) [#337](../../issues/337) [#317](../../issues/317) [#109](../../issues/109) [#137](../../issues/137) [#134](../../issues/134) [#133](../../issues/133) [#108](../../issues/108))
+* OpenGLDrv should now render vehicle headlights correctly
+* We fixed a bug that made ALAudio reduce the sound volume if you had voice chat enabled on the previous map ([#374](../../issues/374))
+* We fixed a particle emitter bug that made the BW 2.5 ViPER rifle magazine flicker at high frame rates
+* We fixed an AntiDrv/OpenGL bug that made some weapons render on top of the HUD
 
 #### Physics
 
 * We fixed a bug that triggered a "moved without proper hashing" warning when a player disconnected while possessing a live pawn
-* We fixed a bug that made SVehicleWheels collide with Pawns even when the vehicle had bBlockActors set to false ([#37](https://github.com/OldUnreal/UT2004Patches/issues/37))
+* We fixed a bug that made SVehicleWheels collide with Pawns even when the vehicle had bBlockActors set to false ([#37](../../issues/37))
 
 #### Webadmin
 
@@ -207,28 +250,30 @@ Version 3374 is completely network compatible with the previous public release o
 * Mortar shells should now work correctly on low-grav maps
 * We fixed a bug that could unexpectedly prevent you from exiting raptor vehicles
 * We fixed memory leaks in the ONSShockTankMuzzleFlash and SVehicle classes
-* We fixed a bug in the Linux/macOS client that made the game exit when trying to open a URL if the BROWSER environment variable was not set ([#132](https://github.com/OldUnreal/UT2004Patches/issues/132))
-* The game should now display item pickup messages when playing with the vehicle pickups mutator ([#154](https://github.com/OldUnreal/UT2004Patches/issues/154))
-* We fixed a bug that made the player model in the player selection menu appear upside down ([#146](https://github.com/OldUnreal/UT2004Patches/issues/146))
+* We fixed a bug in the Linux/macOS client that made the game exit when trying to open a URL if the BROWSER environment variable was not set ([#132](../../issues/132))
+* The game should now display item pickup messages when playing with the vehicle pickups mutator ([#154](../../issues/154))
+* We fixed a bug that made the player model in the player selection menu appear upside down ([#146](../../issues/146))
 * The domination tutorial should now work as expected
 * We fixed a typo in the particle emitter velocity scaling code that made particle emitters ignore Z-scaling
-* We fixed a bug that made it possible to receive bloodrites challenges for non-existent team members ([#136](https://github.com/OldUnreal/UT2004Patches/issues/136#issuecomment-3745256548))
+* We fixed a bug that made it possible to receive bloodrites challenges for non-existent team members ([#136](../../issues/136#issuecomment-3745256548))
+* We fixed some accessed none errors in Onslaught
 
 #### Miscellaneous
 
 * We now support command lines longer than 1024 characters
 * We backported UT 469's FMemCache implementation. This will give us some decent performance improvements on some maps
+* We fixed several bugs that broke game relaunching on Linux and macOS
 
-### Stability Improvements
+### Stability/Security Fixes
 
 #### Unreal Editor
 
 * We fixed a bug that crashed Unreal Editor when converting meshes to brushes
 * We fixed a bug that crashed Unreal Editor when you opened a map while the 3D viewport was in realtime mode
 * We fixed a bug that could crash Unreal Editor when selecting something in a 3D viewport that uses D3D9Drv
-* We fixed a bug that made UnrealEd crash when importing certain skeletal meshes ([#115](https://github.com/OldUnreal/UT2004Patches/issues/115))
-* The terrain editor no longer crashes when the TerrainMap is null ([#120](https://github.com/OldUnreal/UT2004Patches/issues/120))
-* The terrain editor no longer crashes when the terrain has a scale of 0 ([#139](https://github.com/OldUnreal/UT2004Patches/issues/139))
+* We fixed a bug that made UnrealEd crash when importing certain skeletal meshes ([#115](../../issues/115))
+* The terrain editor no longer crashes when the TerrainMap is null ([#120](../../issues/120))
+* The terrain editor no longer crashes when the terrain has a scale of 0 ([#139](../../issues/139))
 * We fixed a bug that made the editor crash when deleting a shader texture and selecting another shader afterwards
 * Unreal editor no longer crashes when undocking the static mesh browser
 
@@ -236,11 +281,16 @@ Version 3374 is completely network compatible with the previous public release o
 
 * We fixed a networking bug that allowed players to perform illegal combo moves and to crash servers
 * Clients no longer hang in connecting screen when server has too many server packages
+* We fixed several vulnerabilities in the ut2004:// URI handler (Thanks Hacker Fantastic for the advisory!)
+* We fixed a crash that would happen when joining online games while recording a demo
+* We fixed a bug that made maps like DM-HUT-Gephyrophilia crash clients connecting to dedicated servers ([#382](../../issues/382))
 
 #### Audio and 3D Rendering
 
 * We fixed a bug that could crash the game when rendering skeletal meshes with invalid hierarchies
 * We fixed a bug that could crash the game when rendering particles emitted by invalid skeletal mesh actors
+* D3D9Drv no longer crashes when trying to set an unsupported display mode
+* We fixed a bug that made AntiTCC crash after changing your audio settings
 
 #### Physics
 
@@ -251,6 +301,7 @@ Version 3374 is completely network compatible with the previous public release o
 
 * The game should no longer crash if you click a tab in an in-game menu whose content is still being rendered
 * We fixed a bug that could make the game crash when calling Engine.Controller.PickTarget while the pawn, level, or game is invalid
+* We fixed a bug that made long map lists crash servers upon startup ([#384](../../issues/384))
 
 #### Miscellaneous
 
