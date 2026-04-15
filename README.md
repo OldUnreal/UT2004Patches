@@ -63,11 +63,12 @@ Update System/UT2004.ini
 2. Configure for the available master servers: In section `[IpDrv.MasterServerLink]` configure with:
 
 ```
-MasterServerList=(Address="utmaster.openspy.net",Port=28902,Group=0)
 MasterServerList=(Address="ut2004master.333networks.com",Port=28902,Group=1)
-MasterServerList=(Address="ut2004master.errorist.eu",Port=28902,Group=1)
 MasterServerList=(Address="ut2004master.gonespy.com",Port=28902,Group=1)
+MasterServerList=(Address="ut2004master.errorist.eu",Port=28902,Group=1)
 MasterServerList=(Address="master.frag-net.com",Port=28902,Group=1)
+MasterServerList=(Address="master.noccer.de",Port=28902,Group=1)
+MasterServerList=(Address="utmaster.openspy.net",Port=28902,Group=2)
 ```
 
 ### Updating Existing Server Installations
@@ -77,11 +78,12 @@ MasterServerList=(Address="master.frag-net.com",Port=28902,Group=1)
 > You should, however, make the following changes to your server configuration file (e.g., UT2004.ini):
 > 1. In [Engine.GameEngine] section, you should replace `ServerActors=IpDrv.MasterServerUplink` with `ServerActors=IpDrv.MasterServerLauncher`
 > 2. in [IpDrv.MasterServerLink] section, you **must** have at least one entry in the MasterServerList, whether or not you want to be actively listed ([IpDrv.MasterServerUplink]->DoUplink=True/False). Populate the list with each master server you may wish to report to. Examples:
-> - `MasterServerList=(Address="utmaster.openspy.net",Port=28902)`
-> -	`MasterServerList=(Address="ut2004master.333networks.com",Port=28902)`
+> - `MasterServerList=(Address="ut2004master.333networks.com",Port=28902)`
+> - `MasterServerList=(Address="ut2004master.gonespy.com",Port=28902)`
 > - `MasterServerList=(Address="ut2004master.errorist.eu",Port=28902)`
-> -	`MasterServerList=(Address="ut2004master.gonespy.com",Port=28902)`
 > - `MasterServerList=(Address="master.frag-net.com",Port=28902)`
+> - `MasterServerList=(Address="master.noccer.de",Port=28902)`
+> - `MasterServerList=(Address="utmaster.openspy.net",Port=28902)`
 
 ## Game Downloads
 
