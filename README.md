@@ -186,3 +186,5 @@ We also want to express our sincerest gratitude to the following people:
 * Ryan C. Gordon (aka "icculus"): for invaluable advice, bug fixes and improvements, and work on the updated SDLDrv. If you like Ryan's work, then please consider [supporting him](https://www.patreon.com/icculus)
 * Rejecht: for the many bug reports on unrealarchive.org
 * FineWolf: for the brand new Linux installer
+* YoYoBatty: for contributing lots of AI and pathing fixes
+* NeonknightOA: for coordinating the localization efforts

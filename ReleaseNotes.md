@@ -32,6 +32,7 @@ Version 3374 is completely network compatible with the previous public release o
 * The Linux and macOS versions now use SDL3 instead of SDL1
 * We dealt a first (minor) blow to the editor goblin! Unreal Editor will no longer freeze for several seconds when clicking a viewport
 * Our patch includes a brand new OpenGL 3.3 / ES 3.0 renderer, AntiDrv. This renderer outperforms the original OpenGLDrv on most platforms, adds new features (e.g., shader-based gamma/color correction), implements/fixes several features that were missing/broken in the original OpenGLDrv (e.g., gradient projectors and weightmap terrain rendering), makes features that were previously nvidia/amd-exclusive available on all platforms (e.g., CO_AlphaBlend_With_Mask combiners), and it can serve as a reference implementation for other new renderers
+* Our patch also includes a brand new DirectX 11 renderer, D3D11Drv. This renderer outperforms all other renderers on Windows 11, both in terms of frame rates and input latency, but it does not work in Unreal Editor yet
 
 ### Enhancements
 
@@ -66,6 +67,10 @@ Version 3374 is completely network compatible with the previous public release o
 * We've removed some particularly spammy log messages from Unreal Editor
 * We fixed an editor bug that duplicated projected texture layers during build operations
 * We've increased the maximum framerate for editor viewports to 200 FPS. This should make camera movement in the editor much smoother
+* The editor browsers now refresh after opening a map
+* We reduced UnrealEd's idle CPU consumption
+* The UnrealEd actor browser now has a function to export selected packages only
+* The editor and UCC will now print more detailed error messages when they fail to save a package
 
 #### Networking and Netcode
 
@@ -107,6 +112,14 @@ Version 3374 is completely network compatible with the previous public release o
 * D3D9Drv should now gracefully handle textures that are missing mipmap data. This fix will make the flames on ONS-Frostbite render correctly
 * ALAudio now supports EAX spatial audio on Linux
 * We added a new "Highest" world detail mode. This mode disables the dynamic detail reduction feature that disabled visual effects such as vehicle headlights when the frame rate (temporarily) dropped below the desired frame rate
+* The Windows client will now use borderless windows rather than exclusive fullscreen mode. This makes alt+tabbing and resolution switching much faster and more reliable
+* The Windows client now detects when you try to open the game window at an incorrect position (e.g., if you had the window on a different monitor the last time you played, but that monitor was now powered off)
+* AntiDrv and D3D11Drv support two fullscreen scaling modes:
+1. Stretch (default): stretches the rendered image to fill your entire screen but does not preserve the aspect ratio
+2. Aspect ratio: stretches the rendered image as much as possible while preserving the aspect ratio
+
+You can enable aspect ratio scaling by adding the ScalingMode=AspectRatio setting to the [D3D11Drv.D3D11RenderDevice] or [AntiDrv.AntiRenderDevice] sections of your game ini. We will probably also make this setting configurable in the menu soon.
+* ALAudio will now play 2D sounds **without** HRTF and 3D sounds **with** HRTF by default. You can override this behavior by setting AutoHRTF to True or False in the [ALAudio.ALAudioSubsystem] section of the ini
 
 #### Physics and Movement
 
@@ -152,14 +165,23 @@ Version 3374 is completely network compatible with the previous public release o
 * We implemented a new mechanism mutators can use to present custom map voting menus to 3374 clients. This mechanism adds a "CustomMapVotingMenu" string variable to the XInterface.GUIController class. You can set this variable using SetPropertyText. If the SetPropertyText call succeeds, the client will open the map voting menu using this variable. If the call fails, you are dealing with an older client, and your custom menu loader will need to revert on such clients to using "MapVotingMenu" ([#335](../../issues/335))
 * We backported the UTrace, UTrack, and UProfile console commands from UT99
 * We tweaked the positioning and scaling of the main menu buttons, the Onslaught minimap, and the Onslaught grenade HUD to better accommodate ultra-widescreen monitors
+* The in-game server details panes will now show the server's current and configured tickrate ([#457](../../issues/457))
+* The news tab in the community menu now shows news hosted on the OldUnreal domain
+* When pasting text into the in-game console using CTRL+V, the pasted text will now be inserted at the cursor position rather than at the end of the current text line
+* We increased the hardcoded limit of 32 players to 255 ([#442](../../issues/442))
+* You can now use the Core.Object.AllPackageFiles(out string FileName, optional string FileExt, optional string Prefix) iterator to iterate through all package files with the given prefix or extension
+* We added the "FILECACHE REFRESH" and "FILECACHE LIST" console commands
 
 #### Webadmin
 
 * The webadmin map list page now shows a sequence number for the maps in the map cycle
+* The webadmin now has a button that refreshes the file cache. This is useful if, e.g., you've uploaded a new map while the server was running
 
 #### Localization
 
-* Added Hebrew and Russian localization and fonts
+* We added Hebrew and Russian localization and fonts
+* We added Polish localization
+* We updated the German localization
 
 #### Miscellaneous
 
@@ -173,6 +195,7 @@ Version 3374 is completely network compatible with the previous public release o
 * We optimized the code that saves your game configuration to INI files
 * The game now flushes the log file when it closes or crashes
 * We backported several bug fixes and optimizations for the log window
+* The game now supports reading localization files with UTF-16BE encoding ([#460](../../issues/460))
 
 ### Bug Fixes
 
@@ -200,6 +223,9 @@ Version 3374 is completely network compatible with the previous public release o
 * We fixed an editor bug that made assets without a group invisible in the various assets browsers ([#237](../../issues/237))
 * We fixed a bug that made the progress bars blink during slow editor operations
 * We fixed a bug that made the editor hang when you compiled changed scripts if no scripts had changes ([#268](../../issues/268))
+* We fixed a bug that would increase the package size every time you rebuilt code
+* We fixed an UnrealEd bug that could make the sound browser export sounds using the wrong file names
+* We fixed several UnrealEd sound browser bugs that could make it apply actions (play, delete, ...) to the wrong sounds
 
 #### Networking and Netcode
 
@@ -219,11 +245,17 @@ Version 3374 is completely network compatible with the previous public release o
 * We fixed a bug that made ALAudio reduce the sound volume if you had voice chat enabled on the previous map ([#374](../../issues/374))
 * We fixed a particle emitter bug that made the BW 2.5 ViPER rifle magazine flicker at high frame rates
 * We fixed an AntiDrv/OpenGL bug that made some weapons render on top of the HUD
+* Rotating skyboxes, such as those on AS-Convoy and CTF-DE-LavaGiant2, will now animate correctly at high frame rates ([#445](../../issues/445), [#448](../../issues/448))
+* All renderers now correctly illuminate geometry when there is no valid LitSphere
+* We fixed a D3D9Drv bug that made projected textures too bright on systems with nvidia GPUs ([#434](../../issues/434))
+* We fixed several renderer bugs that made certain scripted textures render incorrectly ([#477](../../issues/477))
 
 #### Physics
 
 * We fixed a bug that triggered a "moved without proper hashing" warning when a player disconnected while possessing a live pawn
 * We fixed a bug that made SVehicleWheels collide with Pawns even when the vehicle had bBlockActors set to false ([#37](../../issues/37))
+* We fixed a typo that made the Engine.PlayerController.ReplicateMove() function call Pawn.SetBase() unnecessarily
+* We fixed several bugs that made the Engine.Controller.LineOfSightTo function return the wrong result
 
 #### Webadmin
 
@@ -257,12 +289,39 @@ Version 3374 is completely network compatible with the previous public release o
 * We fixed a typo in the particle emitter velocity scaling code that made particle emitters ignore Z-scaling
 * We fixed a bug that made it possible to receive bloodrites challenges for non-existent team members ([#136](../../issues/136#issuecomment-3745256548))
 * We fixed some accessed none errors in Onslaught
+* The roaming energy effect on Onslaught power nodes now works correctly when players switch teams ([#476](../../issues/476))
+* We fixed a bug that could make the game remember the wrong noise in Engine.Actor.MakeNoise
+* The mutant game mode now registers kills correctly ([#497](../../issues/497))
+
+#### AI and Pathing
+
+* We fixed a typo in the UnrealGame.Bot.TacticalMove.EngageDirection function. Because of the typo, bNotifyApex and bTacticalDoubleJump were not set to true if Pawn.Weapon.SplashJump() returned true
+* We fixed an AI bug that made bots unnecessarily prioritize searching for ammo pickups
+* We fixed an AI bug that made the game find new enemies for dead bots
+* We fixed an AI bug that could make bots ignore potential enemies if another bot had already selected them as enemies
+* We fixed a squad balancing bug caused by an incorrect distance calculation in Onslaught.ONSSquadAI.BotEnteredVehicle
+* We fixed a bug that made the UnrealGame.DomTeamAI.GetLeastDefendedObjective() return the most defended objective instead
+* We fixed typos that made the SkaarjPack.MonsterController.ClearShot() and UnrealGame.Bot.ClearShot() functions return false unconditionally
+* We fixed a pathing bug that made bots dodge fearspots incorrectly. We also increased the maximum number of fearspots from 2 to 10
+* We fixed a math bug that made the game determine if a bot could hear an enemy behind a wall incorrectly
+* We fixed a math bug in the UT2k4Assault.AssaultSquadAI.ShouldSuppressEnemy() function
+* We fixed a pathing bug that made the game fail to find additional vehicle paths when Engine.GameInfo.bLiberalVehiclePaths was enabled
+* We fixed a pathing bug that made bots always go for the last detour they found rather than the best detour they found when they could not move directly to their desired destination
+* We fixed a pathing bug that could cause bots to incorrectly believe their destination was unreachable
+* We fixed a pathing bug that made bots sometimes think they could not reach their destination by jumping when they actually could
+* We fixed a pathing bug that made bots constantly trigger computationally expensive ledge checks
+* We fixed bugs in SkaarjPack.MonsterController.NotifyBump() and UnrealGame.Bot.NotifyBump(). These bugs made camping bots move out of the way when a different player bumped into them, even if that bot was not actually blocking the way
+* We fixed a bug that made the UnrealGame.SquadAI.CloseToLeader() function return an incorrect result on maps with water volumes in the middle
+* We fixed a bug that could make bots try to grab a super pickup when another bot was already much closer to it
+* We fixed typos in the UT2k4Assault.ASGameInfo.TweakSkill() and UnrealGame.DeathMatch.TweakSkill() functions. Because of these typos, the game would incorrectly set the skill level of the bots on the human player's team. Since this bug fix has the potential to change the game balance in single-player mode, the bug fix is optional and disabled by default. To enable the fix, you can set bTeamBotsAsEpicIntended to True in the [UT2k4Assault.ASGameInfo] and [UnrealGame.DeathMatch] sections of the game ini
+
 
 #### Miscellaneous
 
 * We now support command lines longer than 1024 characters
 * We backported UT 469's FMemCache implementation. This will give us some decent performance improvements on some maps
 * We fixed several bugs that broke game relaunching on Linux and macOS
+* We fixed several bugs in the Cache Manager, including one where it would list all packages containing a "ut2" substring in their name as maps
 
 ### Stability/Security Fixes
 
@@ -276,6 +335,13 @@ Version 3374 is completely network compatible with the previous public release o
 * The terrain editor no longer crashes when the terrain has a scale of 0 ([#139](../../issues/139))
 * We fixed a bug that made the editor crash when deleting a shader texture and selecting another shader afterwards
 * Unreal editor no longer crashes when undocking the static mesh browser
+* We fixed a bug that crashed the editor when you moved the fade in/out sliders in the particle editor
+* We fixed a bug that could crash the editor when selecting a list box ([#435](../../issues/435))
+* We fixed a bug that would crash Unreal Editor when scrolling in an empty scene manager window
+* We fixed a bug that would crash the editor when trying to render projectors after importing t3d data
+* We fixed a bug that made the editor stop responding after closing modal dialogs
+* We fixed several bugs that could crash UnrealEd when trying to play, export, delete, or rename a sound when no sound was selected in the sound browser ([#481](../../issues/481))
+* We fixed a bug that made UnrealEd crash after right-clicking an item box ([#484](../../issues/484))
 
 #### Networking and Netcode
 
@@ -284,6 +350,8 @@ Version 3374 is completely network compatible with the previous public release o
 * We fixed several vulnerabilities in the ut2004:// URI handler (Thanks Hacker Fantastic for the advisory!)
 * We fixed a crash that would happen when joining online games while recording a demo
 * We fixed a bug that made maps like DM-HUT-Gephyrophilia crash clients connecting to dedicated servers ([#382](../../issues/382))
+* We fixed a bug that would crash the game when it failed to open a voice channel (e.g., while switching maps) ([#465](../../issues/465))
+* We fixed a security bug that allowed players to call replicated functions without the necessary permissions to do so
 
 #### Audio and 3D Rendering
 
@@ -291,6 +359,8 @@ Version 3374 is completely network compatible with the previous public release o
 * We fixed a bug that could crash the game when rendering particles emitted by invalid skeletal mesh actors
 * D3D9Drv no longer crashes when trying to set an unsupported display mode
 * We fixed a bug that made AntiTCC crash after changing your audio settings
+* We fixed a crash that would occur when the game attempted to register an anti portal in a zone without zone info
+* We fixed a bug that could crash the game while trying to render a weapon without an owner. These crashes typically happen when you import an Unreal or Unreal Tournament (99) map into the UT2004 editor
 
 #### Physics
 
@@ -302,9 +372,12 @@ Version 3374 is completely network compatible with the previous public release o
 * The game should no longer crash if you click a tab in an in-game menu whose content is still being rendered
 * We fixed a bug that could make the game crash when calling Engine.Controller.PickTarget while the pawn, level, or game is invalid
 * We fixed a bug that made long map lists crash servers upon startup ([#384](../../issues/384))
+* We fixed a bug that crashed the game when invoking the garbage collector from actor state code. This made maps such as AS-Convoy crash if you launched them with the quickstart parameter set to true ([#420](../../issues/420))
+* We fixed a bug that crashed the game on maps with invalid MyLevel code (e.g., VCTF-ThermalPlayGround-2)
 
 #### Miscellaneous
 
 * We fixed a bug that made the game crash when reading an Unreal package with an unexpected GUID
 * We fixed a garbage collection bug that made the game crash upon shutdown
 * We fixed a bug that made the game randomly crash when it tried to write to the log file during shutdown
+* The game will now fail to load (rather than crash) packages with invalid package headers
