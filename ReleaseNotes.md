@@ -161,7 +161,7 @@ You can enable aspect ratio scaling by adding the ScalingMode=AspectRatio settin
 * The onslaught ladder should now appear in the single player menu ([#136](../../issues/136))
 * The tutorial maps in the single player campaign now have a thumbnail
 * The "open" console command now supports https links
-* We added functionality for colored server names using HTML-like notation
+* We added functionality for colored server names using HTML-like notation: `(#RRGGBB)` where RR, GG and BB are hex values `01` to `FF`. For example, `(#228b22)Forest Green` should give you $\color{#228b22}\textsf{Forest Green} $
 * We implemented a new mechanism mutators can use to present custom map voting menus to 3374 clients. This mechanism adds a "CustomMapVotingMenu" string variable to the XInterface.GUIController class. You can set this variable using SetPropertyText. If the SetPropertyText call succeeds, the client will open the map voting menu using this variable. If the call fails, you are dealing with an older client, and your custom menu loader will need to revert on such clients to using "MapVotingMenu" ([#335](../../issues/335))
 * We backported the UTrace, UTrack, and UProfile console commands from UT99
 * We tweaked the positioning and scaling of the main menu buttons, the Onslaught minimap, and the Onslaught grenade HUD to better accommodate ultra-widescreen monitors
