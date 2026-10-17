@@ -1,0 +1,51 @@
+# vim:syntax=apparmor
+
+#include <tunables/global>
+
+profile ut2004 /opt/ut2004/System/UT2004 {
+  #include <abstractions/audio>
+  #include <abstractions/base>
+
+  # Allow GPU access
+  /dev/dri/ rw,
+  /dev/dri/** rw,
+  /sys/devices/ r,
+  /sys/devices/** r,
+  /usr/share/libdrm/ r,
+  /usr/share/libdrm/** r,
+
+  # Allow system library access
+  /usr/lib/ rm,
+  /usr/lib/** rm,
+
+  # Allow core files access
+  /opt/ut2004/ rm,
+  /opt/ut2004/** rm,
+
+  # Allow home directory UT2004 config and cache directory access
+  owner @{HOME}/.ut2004 rwm,
+  owner @{HOME}/.ut2004/** rwm,
+
+  # Alllow access to Pulseaudio
+  /usr/bin/pulseaudio Pixr,
+  /usr/share/alsa/ r,
+  /usr/share/alsa/** r,
+
+  # Allow online play
+  /etc/hosts r,
+  /etc/host.conf r,
+  /etc/nsswitch.conf r,
+  /etc/resolv.conf r,
+
+  network udp,
+  network netlink raw,
+  network inet stream,
+
+  # potentially extremely sensitive files
+  audit deny @{HOME}/.gnupg/** mrwkl,
+  audit deny @{HOME}/.ssh/** mrwkl,
+
+  # Very noisy and access not required / can be denied
+  deny /home/video-editor/.Xauthority r,
+  deny /var/lib/dbus/machine-id r,
+}
